@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Security Authorization Form: Voyager Circulation Only: collapse panels-->     
+    <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">     
+        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	
+    <!-- Javascript -->
+    
+	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Voyager Circulation Only</title>
+	</head>
+	
+	
+	<body> 
+	<div class="container">
+	<div class="row">
+	<form action="https://imageweb-test.ua.edu/Public/LoginFormProc.aspx?FromLoginFormProc=true" method="post"> 
+	
+			<!-- Begin Required OnBase Fields -->
+			<div id="loginformprocparams"> 
+				<input type="hidden" name="LanguageParam" value="en-us" />
+				<input type="hidden" name="OBWeb_FinalTargetPage" value="https://bnrsupport-test.ua.edu/jeff/Library/Voyager%20Only%20Form/landing.html"/>
+				<input type="hidden" name="OBDocumentType" value="759" />
+				<input type="hidden" name="OBWeb_Redirect" value="https://bnrsupport-test.ua.edu/jeff/Library/Voyager%20Only%20Form/landing.html"/>
+			</div>
+			<!-- End Required OnBase Fields -->	
+	<img src="images/librariesk_black.png" alt="UA Libraries Logo" style="width:150px;height:60px"> 
+	<h1 class="h2">Security Authorization Form</h1>
+        <h2 class="h3">Voyager Circulation Only - Student Accounts</h2>
+        <hr>
+	    <div class="row">
+	    	<div class="col-md-4">
+				<fieldset class="form-group">
+					<label for="field1">
+						Effective Date: 
+					</label>
+					<input type="date" class="form-control" name="OBKey_Effective_Date_1" id="field1" required>
+				</fieldset>
+			</div>
+	    </div>
+		<div class="row">	
+			<div class="col-md-4">
+				<fieldset class="form-group">
+					<label for="field1">
+						Requesting Supervisor
+					</label>
+					<input type="text" class="form-control" name="OBKey_UL_Supervisor_Name_1" id="field1" required>
+				</fieldset>
+			</div>
+			<div class="col-md-3">
+				<fieldset class="form-group">
+					<label for="field2">
+						Supervisor Telephone (last 4 digits)
+					</label>
+					<input type="number" class="form-control" name="OBKey_Office_Phone_1" id="field2" required>
+				</fieldset>
+			</div>
+			<div class="col-md-5">
+				<fieldset class="form-group">
+					<label for="field3">
+						Supervisor Email
+					</label>
+					<input type="email" class="form-control" name="OBKey_Supervisor_Email_1" id="field3" required>
+				</fieldset>
+			</div>	
+		</div>
+
+	
+   <div class="panel-group" id="accordion1">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+			  <h4 class="panel-title">
+			   Account Information (First Name, Last Name, Email Address) 
+			  </h4>
+			</div>  
+			<div id="collapse1" class="panel-collapse">
+				<div class="panel-body">	
+					<div class="row">
+					<div class="col-md-4">
+						<label for="field4">
+							First Name
+						</label>
+						<input type="text" class="form-control" name="OBKey_First_Name_1" id="field4" required>
+					</div>	
+					<div class="col-md-4">
+						<label for="field5">
+							Last Name
+						</label>
+						<input type="text" class="form-control" name="OBKey_Last_Name_1" id="field5" required>
+					</div>	
+					<div class="col-md-4">
+						<label for="field6">
+							Valid UA e-mail (@ua.edu, @crimson.ua.edu)
+						</label>
+					<input type="text" class="form-control" name="OBKey_Student_Email_1" id="field6" required>
+					</div>
+	
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+    <div class="form-group">
+      <label for="comment">Comments:</label>
+      <textarea class="form-control" rows="3" id="comment" name="comment"></textarea>
+    </div>
+	
+	
+	<input type="submit" id="submit" name="OBBtn_Yes" value="Submit" class="navbtn btn btn-primary btn-lg" />
+	
+</form> 
+
+
+</div>
+</div>
+</body>
