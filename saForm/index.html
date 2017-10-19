@@ -322,6 +322,33 @@
 			    this.checked = true; 
 			  });
 			}
+			
+			  // Check to see if any Voyager Access has been requested
+				var checkedBoxes = $('.voyager:checked').length;
+			
+				if(checkedBoxes > 0) {
+					$('#voyager_access_requested').val("YES");
+				} else {
+					$('#voyager_access_requested').val("NO");
+				}
+				
+				// Check to see if any Departmental Share Access has been requested
+				var checkedBoxes = $('.departmental_share_access:checked').length;
+				
+				if(checkedBoxes > 0) {
+					$('#departmental_share_access_requested').val("YES");
+				} else {
+					$('#departmental_share_access_requested').val("NO");
+				}
+				
+				// Check to see if any Web Services Access has been requested
+				var webServices = $('.web_services:checked').length;
+				
+				if(webServices > 0) {
+					$('#web_services_requested').val("YES");
+				} else {
+					$('#web_services_requested').val("NO");
+				}
 
 		});
 
