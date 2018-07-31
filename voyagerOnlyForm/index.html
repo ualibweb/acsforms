@@ -16,6 +16,25 @@
 	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <title>Voyager Circulation Only</title>
+		<script>
+			jQuery(document).ready(function($){
+				$('#field10').change(function(obj){
+			
+					if ($(this).val() == 'Tom Wilson'){
+						$('#field11').val('2299');
+						$('#field12').val('tcwilson@ua.edu');
+					}
+					if ($(this).val() == 'Millie Jackson'){
+						$('#field11').val('5008');
+						$('#field12').val('mljackson@ua.edu');
+					}
+					if ($(this).val() == 'Lorraine Madway'){
+						$('#field11').val('0513');
+						$('#field12').val('lmadway@ua.edu');
+					}
+				});
+			});
+		</script>
 	</head>
 	
 	
@@ -80,7 +99,12 @@
 					<label for="field10">
 						Associate Dean
 					</label>
-					<input required type="text" class="form-control" name="OBKey_Associate_Dean_Name_1" id="field10">
+					<select required type="text" class="form-control" name="OBKey_Associate_Dean_Name_1" id="field10">					
+							<option selected></option>
+							<option>Tom Wilson</option>
+							<option>Millie Jackson</option>
+							<option>Lorraine Madway</option>
+					</select>
 				</fieldset>
 			</div>
 			<div class="col-md-3">
@@ -126,7 +150,7 @@
 					</div>	
 					<div class="col-md-4">
 						<label for="field6">
-							Valid UA e-mail (@ua.edu, @crimson.ua.edu)
+							Valid UA e-mail (@crimson.ua.edu)
 						</label>
 					<input type="text" class="form-control" name="OBKey_Student_Email_1" id="field6" required>
 					</div>

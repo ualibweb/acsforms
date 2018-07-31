@@ -15,6 +15,26 @@
     
 	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script>
+			jQuery(document).ready(function($){
+				//Autofill AD telephone and email based on name selection
+				$('#field2').change(function(obj){
+					
+					if ($(this).val() == 'Tom Wilson'){
+						$('#field3').val('2299');
+						$('#field4').val('tcwilson@ua.edu');
+					}
+					if ($(this).val() == 'Millie Jackson'){
+						$('#field3').val('5008');
+						$('#field4').val('mljackson@ua.edu');
+					}
+					if ($(this).val() == 'Lorraine Madway'){
+						$('#field3').val('0513');
+						$('#field4').val('lmadway@ua.edu');
+					}
+				});
+			});
+		</script>
   <title>Deleting Network and Voyager Access</title>
   </head>
   
@@ -118,7 +138,12 @@
 					<label for="field2">
 						Associate Dean
 					</label>
-					<input required type="text" class="form-control" name="OBKey_Associate_Dean_Name_1" id="field2">
+					<select required class="form-control" name="OBKey_Associate_Dean_Name_1" id="field2">
+								<option selected></option>
+								<option>Tom Wilson</option>
+								<option>Millie Jackson</option>
+								<option>Lorraine Madway</option>
+					</select>
 				</fieldset>
 			</div>
 			<div class="col-md-4">
@@ -126,7 +151,7 @@
 					<label for="field3">
 						Associate Dean's Telephone (last 4 digits) 
 					</label>
-					<input required type="number" class="form-control" name="OBKey_Associate_Dean_Phone_1" id="field3">
+					<input required class="form-control" name="OBKey_Associate_Dean_Phone_1" id="field3">
 				</fieldset>
 			</div>	
 			<div class="col-md-4">
