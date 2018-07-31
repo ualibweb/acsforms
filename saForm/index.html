@@ -475,22 +475,21 @@
 		});
 		
 		//Autofill AD telephone and email based on name selection
-		$('#field10').change(function(obj){
+		$('#AssociateDean').change(function(obj){
 			
-			if ($(this).val() == 'Tom Wilson'){
-				$('#field11').val('2299');
-				$('#field12').val('tcwilson@ua.edu');
-			}
-			if ($(this).val() == 'Millie Jackson'){
-				$('#field11').val('5008');
-				$('#field12').val('mljackson@ua.edu');
-			}
-			if ($(this).val() == 'Lorraine Madway'){
-				$('#field11').val('0513');
-				$('#field12').val('lmadway@ua.edu');
-			}
-		});
-
+					if ($(this).val() == 'Tom Wilson'){
+						$('#AssociateDeanPhone').val('2299');
+						$('#AssociateDeanEmail').val('tcwilson@ua.edu');
+					}
+					if ($(this).val() == 'Millie Jackson'){
+						$('#AssociateDeanPhone').val('5008');
+						$('#AssociateDeanEmail').val('mljackson@ua.edu');
+					}
+					if ($(this).val() == 'Lorraine Madway'){
+						$('#AssociateDeanPhone').val('0513');
+						$('#AssociateDeanEmail').val('lmadway@ua.edu');
+					}
+				});
 
     });
 	</script>
@@ -706,10 +705,10 @@
 					<div class="row">						
 						<div class="col-md-4">
 							<fieldset class="form-group">
-								<label for="field10">
+								<label for="AssociateDean">
 									Associate Dean
 								</label>
-								<select required class="form-control" name="OBKey_Associate_Dean_Name_1" id="field10">
+								<select required class="form-control" name="OBKey_Associate_Dean_Name_1" id="AssociateDean">
 								  <option selected></option>
 									<option>Tom Wilson</option>
 									<option>Millie Jackson</option>
@@ -719,18 +718,18 @@
 						</div>
 						<div class="col-md-3">
 							<fieldset class="form-group">
-								<label for="field11">
+								<label for="AssociateDeanPhone">
 									Associate Dean's Telephone (last 4 digits)
 								</label>
-								<input type="text" class="form-control" name="OBKey_Associate_Dean_Phone_1" id="field11">
+								<input type="text" class="form-control" name="OBKey_Associate_Dean_Phone_1" id="AssociateDeanPhone">
 							</fieldset>
 						</div>
 						<div class="col-md-5">
 							<fieldset class="form-group">
-								<label for="field12">
+								<label for="AssociateDeanEmail">
 									Associate Dean's Email
 								</label>
-								<input type="email" class="form-control" name="OBKey_Associate_Dean_Email_1" id="field12">
+								<input type="email" class="form-control" name="OBKey_Associate_Dean_Email_1" id="AssociateDeanEmail">
 							</fieldset>
 						</div>	
 					</div>
@@ -1042,6 +1041,7 @@
 					<div class="row">				
 						<div class="col-md-3">
 						<div class="checkbox"> 
+
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_1" value="ACADEMIC LABS">
 							ACADEMIC LABS
@@ -1055,14 +1055,32 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="ACS PRINT">
+							ACS PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_3" value="ADHC">
 							ADHC
 							</label>
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="ADHC PRINT">
+							ADHC PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_4" value="ADMINISTRATION">
 							ADMINISTRATION
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="ADMIN PRINT">
+							ADMIN PRINT
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1075,6 +1093,12 @@
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_6" value="ANNEX01">
 							ANNEX01
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="ANNEX PRINT">
+							ANNEX PRINT
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1097,6 +1121,18 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="3DBRUNO EMAIL">
+							BRUNO 3D PRINTING EMAIL
+							</label>
+						</div>	
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="CALBRUNO EMAIL">
+							BRUNO CALENDAR EMAIL
+							</label>
+						</div>	
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_10" value="BUDGET">
 							BUDGET
 							</label>
@@ -1105,6 +1141,12 @@
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_11" value="BUSINESS">
 							BUSINESS
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="BUSINESS PRINT">
+							BUSINESS PRINT
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1119,15 +1161,22 @@
 							CIRCMAIL EMAIL
 							</label>
 						</div>
+						</div>	
+					
+						<div class="col-md-3">
+
 						<div class="checkbox">
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_14" value="CIRCULATION">
 							CIRCULATION
 							</label>
 						</div>
-						</div>	
-					
-						<div class="col-md-3">
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="CIRCULATION PRINT">
+							CIRC PRINT
+							</label>
+						</div>
 						<div class="checkbox">
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_15" value="DEAN">
@@ -1149,6 +1198,12 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="DIGITAL PRINT">
+							DIGITAL PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_18" value="DIGITAL PROJECTS">
 							DIGITAL PROJECTS
 							</label>
@@ -1163,6 +1218,12 @@
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_20" value="EDUCATION">
 							EDUCATION
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="EDUCATION PRINT">
+							EDUCATION PRINT
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1191,6 +1252,12 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="GIS PRINT">
+							GIS PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_25" value="GORGRES EMAIL">
 							GORGRES EMAIL
 							</label>
@@ -1209,17 +1276,31 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="GOV DOCS PRINT">
+							GOV DOCS PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_28" value="HELPDESK">
 							HELP DESK
 							</label>
 						</div>
+
 						</div>
 					
 						<div class="col-md-3">
+
 						<div class="checkbox">
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_29" value="HOOLEILL EMAIL">
 							HOOLEILL EMAIL 
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="HOOLE PRINT">
+							HOOLE PRINT
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1255,6 +1336,18 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="IR ANNEX">
+							IR ANNEX
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="IR PRINT">
+							IR PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_35" value="JSTOR">
 							JSTOR
 							</label>
@@ -1286,6 +1379,18 @@
 						</div>
 						<div class="checkbox">
 							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="3DMCLURE EMAIL">
+							MCLURE 3D PRINTING EMAIL
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="CALMCLURE EMAIL">
+							MCLURE CALENDAR EMAIL
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_40" value="MCLUREILL EMAIL">
 							MCLUREILL EMAIL 
 							</label>
@@ -1303,13 +1408,21 @@
 							MEDIA SERVICES
 							</label>
 						</div>							
-						</div>	
-					
-						<div class="col-md-3">
 						<div class="checkbox">
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_43" value="METADATA">
 							METADATA
+							</label>
+						</div>
+						</div>	
+
+						<div class="col-md-3">
+			
+								
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="MUSICLIB EMAIL">
+							MUSIC LIBRARY EMAIL
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1326,6 +1439,24 @@
 						</div>
 						<div class="checkbox">
 							<label>
+								<input type="checkbox" class="departmental_share_access" name="addOBKey" value="RAD PRINT">
+								RAD PRINT
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="departmental_share_access" name="addOBKey" value="3DRODGERS EMAIL">
+								RODGERS 3D PRINTING EMAIL
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="CALRODGERS EMAIL">
+							RODGERS CALENDAR EMAIL
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_46" value="RUSHCATS EMAIL">
 							RUSHCATS EMAIL 
 							</label>
@@ -1334,6 +1465,12 @@
 							<label>
 							<input type="checkbox" class="departmental_share_access" name="OBKey_UL_Departmental_Share_Access_47" value="SCIENCE ENGINEERING">
 							SCIENCE ENGINEERING
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" class="departmental_share_access" name="addOBKey" value="SMC PRINT">
+							SMC PRINT 
 							</label>
 						</div>
 						<div class="checkbox">
@@ -1381,6 +1518,18 @@
 							<label>
 							<input type="checkbox" class="web_services" name="OBKey_UL_Departmental_Share_Access_55" value="WEBDEV EMAIL">
 							WEBDEV EMAIL
+							</label>
+						</div>
+						<div class="checkbox">	
+							<label>
+							<input type="checkbox" class="web_services" name="addOBKey" value="WEBDEV PRINT">
+							WEBDEV PRINT
+							</label>
+						</div>
+						<div class="checkbox">	
+							<label>
+							<input type="checkbox" class="web_services" name="addOBKey" value="WILLIAMS PRINT">
+							WILLIAMS PRINT
 							</label>
 						</div>
 						<div class="checkbox">
