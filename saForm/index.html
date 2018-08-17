@@ -490,6 +490,22 @@
 						$('#AssociateDeanEmail').val('lmadway@ua.edu');
 					}
 				});
+				
+		 //Hide AD row when student is selected for employee type, show it when faculty/staff is selected
+			$('input[name="OBKey_Employee_Type_1"]').change(function(obj){
+			   console.log("change!");
+				 var employeeTypeValue = $(this).val(); 
+				 //console.log("this val is " + employeeTypeValue);
+				if (employeeTypeValue == 'STUDENT/GTA/INTERN'){
+					$('#AssociateDean').val('');
+					$('#AssociateDeanPhone').val('');
+					$('#AssociateDeanEmail').val('');
+					$('#ADRow').hide();
+				}
+				else {
+					$('#ADRow').show();					
+				}
+			});
 
     });
 	</script>
@@ -702,7 +718,7 @@
 						</div>	
 					</div>
 					
-					<div class="row">						
+					<div class="row" id="ADRow">						
 						<div class="col-md-4">
 							<fieldset class="form-group">
 								<label for="AssociateDean">
