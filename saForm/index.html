@@ -500,10 +500,16 @@
 					$('#AssociateDean').val('');
 					$('#AssociateDeanPhone').val('');
 					$('#AssociateDeanEmail').val('');
+					$('#AssociateDean').removeAttr('required');
+					$('#AssociateDeanPhone').removeAttr('required');
+					$('#AssociateDeanEmail').removeAttr('required');
 					$('#ADRow').hide();
 				}
 				else {
-					$('#ADRow').show();					
+					$('#ADRow').show();				
+					$('#AssociateDean').prop('required', true);
+					$('#AssociateDeanPhone').prop('required', true);
+					$('#AssociateDeanEmail').prop('required', true);					
 				}
 			});
 
