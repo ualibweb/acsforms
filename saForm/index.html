@@ -41,6 +41,17 @@
           }
         });
 
+        // Check to see if any OCLC Access has been requested
+        $(".oclc").click(function () {
+          var checkedBoxes = $(".oclc:checked").length;
+
+          if (checkedBoxes > 0) {
+            $("#oclc_access_requested").val("YES");
+          } else {
+            $("#oclc_access_requested").val("NO");
+          }
+        });
+
         // Check to see if any Departmental Share Access has been requested
         $(".departmental_share_access").click(function () {
           var checkedBoxes = $(".departmental_share_access:checked").length;
@@ -416,15 +427,15 @@
         //Field 8 is the departmental dropdown
         $("#field8").change(function (obj) {
           //Get the selected department
-          var department = $("select option:selected")[0].textContent;
+          var department = $("select option:selected")[0].textContent.trim();
 
           //Uncheck currently checked departmental boxes
-          $("#collapse4 .checkbox input:checked").each(function () {
+          $("#collapse5 .checkbox input:checked").each(function () {
             this.checked = false;
           });
 
           //Uncheck currently checked email distribution groups
-          $("#collapse5 .checkbox input:checked").each(function () {
+          $("#collapse6 .checkbox input:checked").each(function () {
             this.checked = false;
           });
 
@@ -472,6 +483,15 @@
             $("#voyager_access_requested").val("NO");
           }
 
+          // Check to see if any OCLC Access has been requested (it's not triggered by a departmental selection, so it shouldn't be).
+          var checkedBoxes = $(".oclc:checked").length;
+
+          if (checkedBoxes > 0) {
+            $("#oclc_access_requested").val("YES");
+          } else {
+            $("#oclc_access_requested").val("NO");
+          }
+
           // Check to see if any Departmental Share Access has been requested
           var checkedBoxes = $(".departmental_share_access:checked").length;
 
@@ -493,10 +513,6 @@
 
         //Autofill AD telephone and email based on name selection
         $("#AssociateDean").change(function (obj) {
-          if ($(this).val() == "Tom Wilson") {
-            $("#AssociateDeanPhone").val("2299");
-            $("#AssociateDeanEmail").val("tcwilson@ua.edu");
-          }
           if ($(this).val() == "Millie Jackson") {
             $("#AssociateDeanPhone").val("5008");
             $("#AssociateDeanEmail").val("mljackson@ua.edu");
@@ -513,7 +529,6 @@
 
         //Hide AD row when student is selected for employee type, show it when faculty/staff is selected
         $('input[name="OBKey_Employee_Type_1"]').change(function (obj) {
-          console.log("change!");
           var employeeTypeValue = $(this).val();
           //console.log("this val is " + employeeTypeValue);
           if (employeeTypeValue == "STUDENT/GTA/INTERN") {
@@ -568,7 +583,7 @@
           <input
             type="hidden"
             name="OBWeb_FinalTargetPage"
-            value="https://intranet.lib.ua.edu/acsforms/saForm/landing.html"
+            value="https://www.lib.ua.edu/acsforms/saForm/landing.html"
           />
           <input
             type="hidden"
@@ -578,7 +593,7 @@
           <input
             type="hidden"
             name="OBWeb_Redirect"
-            value="https://intranet.lib.ua.edu/acsforms/saForm/landing.html"
+            value="https://www.lib.ua.edu/acsforms/saForm/landing.html"
           />
         </div>
         <input
@@ -586,6 +601,12 @@
           id="voyager_access_requested"
           name="OBKey_UL_Voyager_Access_Requested_1"
           value="NO"
+        />
+        <input
+          type="hidden"
+          id="oclc_access_requested"
+          name="OBKey_UL_OCLC_Access_Requested_1"
+          v-model="NO"
         />
         <input
           type="hidden"
@@ -751,9 +772,7 @@
                 name="OBKey_Department_1"
                 id="field8"
               >
-                <option value="" disabled selected hidden>
-                  Choose A Department
-                </option>
+                <option value="" disabled selected>Choose a department</option>
                 <option value="williams">
                   A.S. Williams III Americana Collection
                 </option>
@@ -882,8 +901,7 @@
                 name="OBKey_Associate_Dean_Name_1"
                 id="AssociateDean"
               >
-                <option selected></option>
-                <option>Tom Wilson</option>
+                <option disabled selected>Choose an Associate Dean</option>
                 <option>Millie Jackson</option>
                 <option>Lorraine Madway</option>
                 <option>Emily Decker</option>
@@ -900,6 +918,7 @@
                 class="form-control"
                 name="OBKey_Associate_Dean_Phone_1"
                 id="AssociateDeanPhone"
+                readonly
               />
             </fieldset>
           </div>
@@ -911,6 +930,7 @@
                 class="form-control"
                 name="OBKey_Associate_Dean_Email_1"
                 id="AssociateDeanEmail"
+                readonly
               />
             </fieldset>
           </div>
@@ -1123,6 +1143,17 @@
                         type="checkbox"
                         class="voyager"
                         name="OBKey_UL_Cataloging_Profiles_3"
+                        value="Cat Copy External GPO"
+                      />
+                      Cat Copy External GPO
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input
+                        type="checkbox"
+                        class="voyager"
+                        name="OBKey_UL_Cataloging_Profiles_4"
                         value="Catalog Assistant I"
                       />
                       Catalog Assistant I
@@ -1133,7 +1164,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_4"
+                        name="OBKey_UL_Cataloging_Profiles_5"
                         value="Catalog Assistant II"
                       />
                       Catalog Assistant II
@@ -1144,7 +1175,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_5"
+                        name="OBKey_UL_Cataloging_Profiles_6"
                         value="Catalog External"
                       />
                       Catalog External
@@ -1155,7 +1186,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_6"
+                        name="OBKey_UL_Cataloging_Profiles_7"
                         value="Catalog Supervisor"
                       />
                       Catalog Supervisor
@@ -1166,7 +1197,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_6"
+                        name="OBKey_UL_Cataloging_Profiles_8"
                         value="Catalog Supervisor II"
                       />
                       Catalog Supervisor II
@@ -1177,7 +1208,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_7"
+                        name="OBKey_UL_Cataloging_Profiles_9"
                         value="Copy Catalog"
                       />
                       Copy Catalog
@@ -1188,7 +1219,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_8"
+                        name="OBKey_UL_Cataloging_Profiles_10"
                         value="Copy Catalog GPO"
                       />
                       Copy Catalog GPO
@@ -1199,7 +1230,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_9"
+                        name="OBKey_UL_Cataloging_Profiles_11"
                         value="HS Catalog"
                       />
                       HS Catalog
@@ -1210,7 +1241,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_9"
+                        name="OBKey_UL_Cataloging_Profiles_12"
                         value="HS Catalog Assistant"
                       />
                       HS Catalog Assistant
@@ -1221,7 +1252,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_10"
+                        name="OBKey_UL_Cataloging_Profiles_13"
                         value="HSL Cataloging"
                       />
                       HSL Cataloging
@@ -1232,7 +1263,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_11"
+                        name="OBKey_UL_Cataloging_Profiles_14"
                         value="Reserves"
                       />
                       Reserves
@@ -1243,7 +1274,7 @@
                       <input
                         type="checkbox"
                         class="voyager"
-                        name="OBKey_UL_Cataloging_Profiles_12"
+                        name="OBKey_UL_Cataloging_Profiles_15"
                         value="Student GPO"
                       />
                       Student GPO
@@ -1467,12 +1498,53 @@
                   data-toggle="collapse"
                   data-parent="#accordion"
                   href="#collapse4"
+                  >A4. OCLC Profiles</a
+                >
+              </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input
+                        type="checkbox"
+                        class="oclc"
+                        name="OBKey_UL_OCLC_Profiles_1"
+                        value="Search"
+                      />
+                      Search
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input
+                        type="checkbox"
+                        class="oclc"
+                        name="OBKey_UL_OCLC_Profiles_2"
+                        value="Full"
+                      />
+                      Full
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--fifth panel-->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapse5"
                   >B. Departmental Share and Print Access
                   <small> (Choose all that apply)</small></a
                 >
               </h4>
             </div>
-            <div id="collapse4" class="panel-collapse collapse">
+            <div id="collapse5" class="panel-collapse collapse">
               <div class="panel-body">
                 <div class="form-group">
                   <div class="row">
@@ -1845,7 +1917,6 @@
                         </label>
                       </div>
                     </div>
-
                     <div class="col-md-3">
                       <div class="checkbox">
                         <label>
@@ -1867,17 +1938,6 @@
                             value="GOVDOCS PRINT"
                           />
                           GOV DOCS PRINT
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_28"
-                            value="HELPDESK"
-                          />
-                          HELP DESK
                         </label>
                       </div>
                       <div class="checkbox">
@@ -1913,7 +1973,6 @@
                           ILL
                         </label>
                       </div>
-
                       <div class="checkbox">
                         <label>
                           <input
@@ -1923,6 +1982,17 @@
                             value="INFOLIT"
                           />
                           INFOLIT
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input
+                            type="checkbox"
+                            class="departmental_share_access"
+                            name="OBKey_UL_Departmental_Share_Access_90"
+                            value="INFORMATICS_DEV"
+                          />
+                          INFORMATICS_DEV
                         </label>
                       </div>
                       <div class="checkbox">
@@ -1963,39 +2033,6 @@
                           <input
                             type="checkbox"
                             class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_35"
-                            value="JSTOR"
-                          />
-                          JSTOR
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_36"
-                            value="KBOX USERS"
-                          />
-                          KBOX USERS
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_37"
-                            value="LIBNAS1 RW ACCESS"
-                          />
-                          LIBNAS1 RW ACCESS
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
                             name="OBKey_UL_Departmental_Share_Access_85"
                             value="LIBINSIGHT"
                           />
@@ -2026,7 +2063,6 @@
                         </label>
                       </div>
                     </div>
-
                     <div class="col-md-3">
                       <div class="checkbox">
                         <label>
@@ -2037,17 +2073,6 @@
                             value="NDNP PROJECT"
                           />
                           NDNP PROJECT
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_83"
-                            value="NETADMIN"
-                          />
-                          NETADMIN
                         </label>
                       </div>
                       <div class="checkbox">
@@ -2193,58 +2218,30 @@
                           WORKSTATION ADMINS
                         </label>
                       </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_56"
-                            value="OTHER"
-                          />Other
-                        </label>
-                        <label>
-                          <input
-                            type="text"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_Other_1"
-                          />
-                        </label>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!--fifth panel-->
+          <!--sixth panel-->
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
                 <a
                   data-toggle="collapse"
                   data-parent="#accordion"
-                  href="#collapse5"
+                  href="#collapse6"
                   >C. Departmental Email and Email Distribution Groups
                   <small>(Choose all that apply)</small></a
                 >
               </h4>
             </div>
-            <div id="collapse5" class="panel-collapse collapse">
+            <div id="collapse6" class="panel-collapse collapse">
               <div class="panel-body">
                 <div class="row">
                   <div class="form-group">
                     <div class="col-md-6" id="email-left-col">
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_1"
-                            value="ALL-LIB"
-                          />
-                          ALL-LIB
-                        </label>
-                      </div>
                       <div class="checkbox">
                         <label>
                           <input
@@ -2320,17 +2317,6 @@
                             value="ARCHIVES EMAIL"
                           />
                           ARCHIVES EMAIL
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_25"
-                            value="CATALOG DEPT EMAIL"
-                          />
-                          CATALOG DEPT EMAIL
                         </label>
                       </div>
                       <div class="checkbox">
@@ -2421,6 +2407,8 @@
                           LIB-UXAG
                         </label>
                       </div>
+                    </div>
+                    <div class="col-md-6" id="email-right-col">
                       <div class="checkbox">
                         <label>
                           <input
@@ -2498,8 +2486,7 @@
                           MUSIC LIBRARY EMAIL
                         </label>
                       </div>
-                    </div>
-                    <div class="col-md-6" id="email-right-col">
+
                       <div class="checkbox">
                         <label>
                           <input
@@ -2509,171 +2496,6 @@
                             value="OLT"
                           />
                           OLT
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_9"
-                            value="OLT-ACS-GLOBAL"
-                          />
-                          OLT-ACS-GLOBAL
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_10"
-                            value="OLT-ACS-STAFF"
-                          />
-                          OLT-ACS-STAFF
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_11"
-                            value="OLT-ACS-STUDENTS"
-                          />
-                          OLT-ACS-STUDENTS
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_12"
-                            value="OLT-DS"
-                          />
-                          OLT-DS
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_13"
-                            value="OLT-ERES"
-                          />
-                          OLT-ERES
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_14"
-                            value="OLT-Global"
-                          />
-                          OLT-Global
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_15"
-                            value="OLT-LIB-LEC"
-                          />
-                          OLT-LIB-LEC
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_16"
-                            value="OLT-Managers"
-                          />
-                          OLT-MANAGERs
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_17"
-                            value="OLT-WEB"
-                          />
-                          OLT-WEB
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_18"
-                            value="OLT-WID"
-                          />
-                          OLT-WID
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_19"
-                            value="Resource-Acquisitions-Discovery"
-                          />
-                          Resource-Acquisitions-Discovery
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_20"
-                            value="RI-CIRC-GLOBAL"
-                          />
-                          RI-CIRC-GLOBAL
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_21"
-                            value="RI-CIRC-STAFF"
-                          />
-                          RI-CIRC-STAFF
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_22"
-                            value="RI-CIRC-STUDENTS"
-                          />
-                          RI-CIRC-STUDENTS
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="email_distribution_groups"
-                            name="OBKey_UL_Email_Distribution_Groups_23"
-                            value="RL-CIRC-STAFF"
-                          />
-                          RL-CIRC-STAFF
                         </label>
                       </div>
                       <div class="checkbox">
@@ -2696,17 +2518,6 @@
                             value="CALRODGERS EMAIL"
                           />
                           RODGERS CALENDAR EMAIL
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input
-                            type="checkbox"
-                            class="departmental_share_access"
-                            name="OBKey_UL_Departmental_Share_Access_46"
-                            value="RUSHCATS EMAIL"
-                          />
-                          RUSHCATS EMAIL
                         </label>
                       </div>
                       <div class="checkbox">
